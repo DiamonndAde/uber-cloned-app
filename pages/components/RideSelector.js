@@ -5,13 +5,11 @@ import { carList } from '../data/carList'
 
 
 const RideSelector = ({pickupCoordinates, dropoffCoordinates}) => {
-    const [ setRideDuration] = useState(0)
+    const [rideDuration, setRideDuration] = useState(0)
 
 
 // Getting Ride duration from Mapbox API
     useEffect(() => {
-        const [ rideDuration] = useState(0)
-
         rideDuration = fetch(
             `https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?access_token=pk.eyJ1IjoiZGlhbW9uZGF5byIsImEiOiJja3ZucDQ5dGk3bm1nMzFxd3F3eWkycTZ3In0._fWUYJdKFxCNA9Db9vhieA`
         )
