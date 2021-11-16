@@ -3,6 +3,7 @@ import tw from "tailwind-styled-components"
 import Map from './components/Map'
 import {useRouter} from "next/router"
 import RideSelector from './components/RideSelector'
+import Link from "next/link"
 
 
 const Confirm = () => {
@@ -11,8 +12,8 @@ const Confirm = () => {
 
 
 
-    const [pickupCoordinates, setPickupcoordinates] = useState()
-    const [dropoffCoordinates, setDropoffcoordinates] = useState()
+    const [pickupCoordinates, setPickupcoordinates] = useState([0, 0])
+    const [dropoffCoordinates, setDropoffcoordinates] = useState([0, 0])
 
 
     const getPickupCoordinates = (pickup) => {
@@ -49,13 +50,21 @@ const Confirm = () => {
 
     return (
         <Wrapper>
+            <ButtonContainer>
+                <Link href="/search">
+                    <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
+                </Link>
+            </ButtonContainer>
            <Map 
                 pickupCoordinates = {pickupCoordinates}
                 dropoffCoordinates = {dropoffCoordinates}
            /> 
             <RideContainer>
 
-            <RideSelector />
+            <RideSelector 
+            pickupCoordinates = {pickupCoordinates} 
+            dropoffCoordinates = {dropoffCoordinates}
+            />
 
                 <ConfirmButtonContainer>
                     <ConfirmButton>
@@ -85,4 +94,12 @@ border-t-2
 `
 const ConfirmButton = tw.div`
 bg-black text-white my-4 mx-4 py-4 text-center text-xl
+`
+
+const ButtonContainer = tw.div`
+rounded-full absolute top-4 left-4 z-10 bg-white shadow-md cursor-pointer
+`
+
+const BackButton = tw.img`
+h-acreen object-contain
 `
